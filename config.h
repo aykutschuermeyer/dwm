@@ -67,8 +67,14 @@ static const char *upvol[]      = { "/usr/bin/amixer",  "set", "Master", "5%+", 
 static const char *downvol[]    = { "/usr/bin/amixer",  "set", "Master", "5%-", NULL };
 static const char *mutevol[]    = { "/usr/bin/amixer", 	"set", "Master", "toggle", NULL };
 
+/* media */
+static const char *playpause[]		= { "playerctl", "play-pause", NULL };
+static const char *stop[]			= { "playerctl", "stop", NULL };
+static const char *previoustrack[]	= { "playerctl", "previous", NULL };
+static const char *nexttrack[]		= { "playerctl", "next", NULL };
+
 static const Key keys[] = {
-	/* modifier                    	 key			                  function        argument */
+	/* modifier                    	key								function        argument */
 	{ MODKEY,                     	XK_p,			   				spawn,         	{.v = dmenucmd } },
 	{ MODKEY,             			XK_Return,		   				spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return,		   				spawn,          {.v = explcmd } },
@@ -109,12 +115,16 @@ static const Key keys[] = {
 	{ 0,							XF86XK_AudioLowerVolume,   		spawn,	  		{.v = downvol } },
 	{ 0,							XF86XK_AudioMute,          		spawn,	  		{.v = mutevol } },
 	{ 0,				    		XF86XK_AudioRaiseVolume,   		spawn,	  		{.v = upvol   } },
+	{ 0,							XF86XK_AudioPlay,				spawn,			{.v = playpause } },
+	{ 0,							XF86XK_AudioStop,				spawn,			{.v = stop } },
+	{ 0,							XF86XK_AudioPrev,				spawn,			{.v = previoustrack } },
+	{ 0,							XF86XK_AudioNext,				spawn,			{.v = nexttrack } },
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
-	/* click                		 event mask      button          function         argument */
+	/* click                		event mask      button          function        argument */
 	{ ClkLtSymbol,          		0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          		0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          		0,              Button2,        zoom,           {0} },
